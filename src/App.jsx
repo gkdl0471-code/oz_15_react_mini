@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.scss'
+import { MovieList } from './components/MovieCard'
+import { MovieDetail } from './components/MovieDetail';
+import movieListData from './data/movieListData.json';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { Layout } from './components/Layout';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const posterURL = "https://image.tmdb.org/t/p/w500"
+  const movieList= movieListData.results;
+  const navigate = useNavigate();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<MovieList movieList={movieList} posterURL={posterURL}/>} />
+        <Route path="/detail" element={<MovieDetail posterURL={posterURL} />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App
