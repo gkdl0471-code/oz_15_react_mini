@@ -1,0 +1,61 @@
+.cardBox {
+  width: 180px;
+  padding: 10px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 20% 0%, #1f2937 0, #020617 55%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  color: #f9fafb;
+  font-weight: 600;
+  text-align: center;
+
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.85);
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(0.99);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+  }
+
+  .movie-poster {
+    width: 100%;
+    height: 240px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
+    margin-bottom: 4px;
+  }
+
+  h3 {
+    font-size: 14px;
+    line-height: 1.3;
+    margin-bottom: 2px;
+    padding: 0 4px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  p {
+    font-size: 13px;
+    color: #facc15;
+    text-shadow: 0 0 6px rgba(250, 204, 21, 0.6);
+  }
+}
