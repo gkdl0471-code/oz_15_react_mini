@@ -1,0 +1,126 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.topbar > header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar .logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar .logo-area img {
+  display: block;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-btn,
+.signup-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.login-btn:hover {
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.signup-btn {
+  background: linear-gradient(135deg, #fb7185, #f97316);
+  border-color: transparent;
+  color: white;
+}
+
+.signup-btn:hover {
+  filter: brightness(1.08);
+}
+
+.search-input {
+  margin-left: 12px;
+  padding: 6px 12px;
+  min-width: 180px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.search-input:focus {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 1);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7);
+}
+
+/* 네비게이션 영역 */
+.navbox {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbox a {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+  text-decoration: none;
+  padding-bottom: 4px;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.navbox a:hover {
+  opacity: 1;
+}
+
+.navbox a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fb7185, #f97316);
+  transition: width 0.2s ease;
+}
+
+.navbox a:hover::after {
+  width: 100%;
+}

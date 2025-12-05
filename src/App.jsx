@@ -1,23 +1,38 @@
-import './App.scss'
-import { MovieList } from './components/MovieCard'
-import { MovieDetail } from './components/MovieDetail';
-import movieListData from './data/movieListData.json';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
-import { Layout } from './components/Layout';
+import "./App.scss";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
+import Popular from "./pages/Popular";
+import Latest from "./pages/Latest";
+import Genre from "./pages/Genre";
+import Search from "./pages/Search"; // ✅ 추가
+
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchPopularMovies } from "./RTK/thunk";
 
 function App() {
-  const posterURL = "https://image.tmdb.org/t/p/w500"
-  const movieList= movieListData.results;
-  const navigate = useNavigate();
+  const posterURL = "https://image.tmdb.org/t/p/w500";
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPopularMovies(3)); // 예: 1~3페이지
+  }, [dispatch]);
 
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<MovieList movieList={movieList} posterURL={posterURL}/>} />
-        <Route path="/detail" element={<MovieDetail posterURL={posterURL} />} />
+        <Route path="/" element={<Home posterURL={posterURL} />} />
+        <Route path="/popular" element={<Popular posterURL={posterURL} />} />
+        <Route path="/latest" element={<Latest posterURL={posterURL} />} />
+        <Route path="/genre" element={<Genre posterURL={posterURL} />} />
+        <Route path="/detail/:id" element={<Detail posterURL={posterURL} />} />
+        <Route path="/search" element={<Search posterURL={posterURL} />} />
       </Route>
     </Routes>
   );
 }
 
-export default App
+export default App;
