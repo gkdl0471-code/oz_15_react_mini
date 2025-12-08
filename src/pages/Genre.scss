@@ -1,9 +1,12 @@
 .page {
+  background-color: #151515;
   width: 100%;
   min-height: calc(100vh - 80px);
   padding: 32px 50px;
   box-sizing: border-box;
 }
+
+
 
 .page-header {
   margin-bottom: 16px;
@@ -12,6 +15,7 @@
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 8px;
+    color: #eee;
   }
 
   p {

@@ -1,18 +1,41 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.scss";
+import { useState, useMemo, useCallback } from "react";
 
 export function NavBar() {
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-
-    if (!value.trim()) {
-      navigate("/search");
-      return;
-    }
-    navigate(`/search?movie=${encodeURIComponent(value)}`);
+  const debounce = (func, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
   };
+
+  const debouncedSearch = useMemo(() =>
+      debounce( keyword => {
+        const trimmed = keyword.trim();
+
+        if (!trimmed) {
+          navigate("/");
+          return;
+        }
+
+        navigate(`/search?movie=${encodeURIComponent(trimmed)}`);
+      }, 200),
+    [navigate]
+  );
+
+  const handleChangeDebounced = useCallback(
+    (event) => {
+      const value = event.target.value;
+      setQuery(value);          // 입력값 상태로 저장
+      debouncedSearch(value);   // 디바운스된 검색 실행
+    },
+    [debouncedSearch]
+  );
 
   return (
     <div className="topbar">
@@ -24,26 +47,24 @@ export function NavBar() {
             </h1>
           </Link>
           <img className="w-[100px]" src="src/img/CGV로고.png" />
+          <nav className="navbox">
+            <Link to="/">홈</Link>
+            <Link to="/genre">장르별</Link>
+          </nav>
         </div>
 
         <div className="auth-buttons">
           <input
             type="text"
             placeholder="영화 제목 검색"
-            onChange={handleSearchChange}
+            value={query}
+            onChange={handleChangeDebounced}
             className="search-input"
           />
-          <button className="login-btn">로그인</button>
-          <button className="signup-btn">회원가입</button>
+          <button className="signup-btn">로그인</button>
         </div>
       </header>
 
-      <nav className="navbox">
-        <Link to="/">홈</Link>
-        <Link to="/popular">인기</Link>
-        <Link to="/latest">최신</Link>
-        <Link to="/genre">장르별</Link>
-      </nav>
     </div>
   );
 }
