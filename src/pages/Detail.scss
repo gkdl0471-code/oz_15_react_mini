@@ -1,82 +1,117 @@
-.container {
-  max-width: 960px;
-  margin: 40px;
-  padding: 24px 28px;
-  display: flex;
-  gap: 32px;
-  border-radius: 18px;
-  background: radial-gradient(circle at top left, #1f2933 0, #050816 55%);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-  color: #f9fafb;
-  line-height: 1.6;
+.detail-page {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 18px 16px;
+  &__bg {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    transform: scale(1.06);
+    z-index: 0;
   }
 
-  .poster-poster {
-    width: 260px;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.8);
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at top,
+        rgba(0, 0, 0, 0.3),
+        rgba(255, 255, 255, 0.2)
+      ),
+      rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+    &__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 16px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: 90%;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+  }
+
+  &__poster-wrap {
     flex-shrink: 0;
-    background-color: #111827;
-
-    @media (max-width: 768px) {
-      width: 220px;
-      height: 320px;
-      margin: 0 auto;
-    }
+    width: 220px; 
+    max-width: 40%;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
   }
 
-  > div:last-child {
+  &__poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__info {
+    flex: 1;                  // 🔹 나머지 공간 전부 차지
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    flex: 1;
+    gap: 16px;
   }
 
-  .title1 {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 4px;
-
-    h1 {
-      margin: 0;
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-
-      @media (max-width: 768px) {
-        font-size: 22px;
-      }
-    }
-
-    span {
-      font-size: 20px;
-      font-weight: 600;
-      color: #fbbf24;
-    }
-  }
-
-  .font-black {
+  &__title {
+    font-size: 28px;
     font-weight: 700;
-    font-size: 14px;
-    color: #e5e7eb;
-    margin-bottom: 4px;
+    line-height: 1.2;
   }
 
-  .font-black + div {
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
     font-size: 14px;
-    color: #d1d5db;
-    line-height: 1.7;
-    white-space: pre-line;
+    opacity: 0.9;
   }
 
-  .font-black:nth-of-type(1) {
+  &__rating {
+    font-weight: 600;
+    color: #ffd600;
+  }
+
+  &__genres {
+    opacity: 0.9;
+  }
+
+  &__release {
+    opacity: 0.8;
+  }
+
+  &__section {
     margin-top: 8px;
+  }
+
+  &__section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  &__overview {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.95;
   }
 }

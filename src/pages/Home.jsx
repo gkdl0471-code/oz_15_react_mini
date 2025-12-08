@@ -1,28 +1,59 @@
 import { useNavigate } from "react-router-dom";
-import { MovieCard } from "../components/MovieCard";
 import { useSelector } from "react-redux";
+import HomeCarousel from "../components/HomeCarousel";
+import PopularCarousel from "../components/PopularCarousel";
 import { selectPopularMovies, selectMovieLoading, selectMovieError } from "../RTK/selector";
+import "./Home.scss";
 
 export default function Home({ posterURL }) {
   const navigate = useNavigate();
-  const movies = useSelector(selectPopularMovies);
+  const movies = useSelector(selectPopularMovies) || [];
   const loading = useSelector(selectMovieLoading);
   const error = useSelector(selectMovieError);
 
-  if (loading) return <div className="page popular-page">로딩 중...</div>;
-  if (error) return <div className="page popular-page">에러: {error}</div>;
+  const handleCardClick = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
+  if (loading) return <div>로딩 중...</div>;
+  if (error) return <div>에러: {error}</div>;
 
   return (
-    <div className="flex flex-wrap gap-5 justify-center pt-5 px-[50px]">
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          title={movie.title}
-          rating={movie.vote_average}
-          posterUrl={posterURL + movie.poster_path}
-          onClick={() => navigate(`/detail/${movie.id}`)}
+    <div className="home-page">
+      <section className="home-latest">
+        <div className="home-latest__header">
+          <h2 className="home-latest__title">NEW</h2>
+          <button
+            className="home-latest__more-btn"
+            onClick={() => navigate("/Latest")}
+          >
+            MORE
+          </button>
+        </div>
+        <HomeCarousel
+          movies={movies.slice(0, 7)}
+          posterURL={posterURL}
+          onClickCard={handleCardClick}
         />
-      ))}
+      </section>
+
+      <section className="home-popular">
+        <div className="home-popular__header">
+          <h2 className="home-popular__title">인기</h2>
+          <button
+            className="home-popular__more-btn"
+            onClick={() => navigate("/popular")}
+          >
+            MORE
+          </button>
+        </div>
+
+        <PopularCarousel
+          movies={movies.slice(0, 20)}
+          posterURL={posterURL}
+          onClickCard={handleCardClick}
+        />
+      </section>
     </div>
   );
 }

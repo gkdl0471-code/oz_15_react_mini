@@ -29,6 +29,7 @@ export const fetchPopularMovies = createAsyncThunk("movie/fetchPopularMovies",
 
     const moviesByPage = await Promise.all(pageArray.map(fetchPage));
     const merged = moviesByPage.flat();
+    
 
     return merged;
   }

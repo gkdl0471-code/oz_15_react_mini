@@ -1,13 +1,12 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
-
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import Popular from "./pages/Popular";
 import Latest from "./pages/Latest";
 import Genre from "./pages/Genre";
-import Search from "./pages/Search"; // ✅ 추가
+import Search from "./pages/Search";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -18,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPopularMovies(3)); // 예: 1~3페이지
+    dispatch(fetchPopularMovies(1));
   }, [dispatch]);
 
   return (

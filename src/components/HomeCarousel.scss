@@ -1,0 +1,200 @@
+.home-carousel {
+  width: 100%;
+  top: 0;
+  position: relative;
+  padding: 40px 0;
+  overflow: hidden;
+  color: #fff;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    filter: blur(8px);
+    transform: scale(1.05);
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  &__swiper {
+    padding: 20px 0 40px;
+  }
+
+  &__card {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__card--active {
+    transform: scale(1.02);
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7);
+  }
+
+  &__image-wrap {
+    cursor: pointer;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__info {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  &__movie-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__release {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  &__rating {
+    font-size: 13px;
+    color: #ffd600;
+  }
+
+  &__overview {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.4;
+    opacity: 0.95;
+    color: #605e65;
+  }
+
+  &__more-btn {
+    align-self: flex-end;
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .home-carousel {
+    padding: 24px 0;
+
+    &__content {
+      padding: 0 12px;
+    }
+
+    &__title {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    &__swiper {
+      padding: 12px 0 24px;
+    }
+
+    &__card {
+      border-radius: 12px;
+    }
+
+    &__image-wrap {
+      img {
+        height: 180px;
+      }
+    }
+
+    &__info {
+      padding: 12px 14px 14px;
+      font-size: 12px;
+      gap: 4px;
+    }
+
+    &__movie-title {
+      font-size: 16px;
+    }
+
+    &__overview {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    &__more-btn {
+      font-size: 11px;
+      padding: 5px 10px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-carousel {
+    padding: 32px 0;
+
+    &__content {
+      padding: 0 20px;
+      max-width: 1000px;
+    }
+
+    &__title {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    &__image-wrap {
+      img {
+        height: 200px;
+      }
+    }
+
+    &__info {
+      font-size: 13px;
+      padding: 14px 16px 16px;
+    }
+
+    &__movie-title {
+      font-size: 17px;
+    }
+  }
+}
