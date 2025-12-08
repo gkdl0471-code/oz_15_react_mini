@@ -3,11 +3,7 @@ import "swiper/css";
 import { MovieCard } from "./MovieCard";
 import "./PopularCarousel.scss";
 
-export default function PopularCarousel({
-  movies = [],
-  posterURL,
-  onClickCard,
-}) {
+export default function PopularCarousel({ movies = [], posterURL, onClickCard }) {
   if (!movies.length) return null;
 
   return (
@@ -16,7 +12,7 @@ export default function PopularCarousel({
         className="popular-carousel__swiper"
         spaceBetween={16}
         slidesPerView={"auto"}
-        grabCursor={true}
+        grabCursor={true}      // 마우스 오버 시 '손 모양' 커서 표시 : 드래그할 수 있다는 느낌을 줌
       >
         {movies.map((movie) => (
           <SwiperSlide

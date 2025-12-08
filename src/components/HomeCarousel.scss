@@ -1,4 +1,6 @@
 .home-carousel {
+  width: 100%;
+  top: 0;
   position: relative;
   padding: 40px 0;
   overflow: hidden;
@@ -21,7 +23,6 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 16px;
-    max-width: 1200px;
   }
 
   &__title {
